@@ -1,0 +1,76 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+  <button type="submit" class="btn btn-primary float-right">Save changes</button>
+  <div class="clearfix"></div>
+  <div class="d-flex justify-content-center">
+    <b class="text-center">Create Product</b>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <div class="form-group ">
+        <label for="name">Name</label>
+        <input class="form-control" formControlName="name" type="text">
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group ">
+        <label for="name">Image</label>
+        <input class="form-control" (change)="uploadFile($event)" type="file">
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group ">
+        <img :src="http://localhost:3000/api/files/get/{{path}}" *ngIf="path != ''">
+      </div>
+    </div>
+  </div>
+
+  <b>Options</b>
+
+  <div class="form-group" formArrayName="options"
+       *ngFor="let option of productForm.controls.options.controls; let i = index">
+    <div class="row" [formGroupName]="i">
+      <div class="col-2">
+        <label for="name">Option {{i + 1}}</label>
+        <input class="form-control" formControlName="name" style="margin-top: 5px"/>
+      </div>
+      <div class="col-10">
+        <label for="name">Value</label>
+        <tag-input formControlName="value"></tag-input>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary mr-1 mb-4" data-toggle="modal"
+          (click)="addProductAttribute()">
+    <i class="fa fa-plus fa-lg mt-1"></i> Add Attribute
+  </button>
+  <br/>
+
+  <b>Variants</b>
+  <div class="form-group" formArrayName="variants"
+       *ngFor="let option of productForm.controls.variants.controls; let i = index">
+    <div class="row" [formGroupName]="i">
+      <div class="col-4" style="padding-top:45px;">
+        <span>{{productForm?.get('variants').value[i].attribute1_name}}
+          : {{productForm?.get('variants').value[i].attribute1_value}} </span>
+        <span
+          *ngIf="productForm?.get('variants').value[i].attribute2_name"> - {{productForm?.get('variants').value[i].attribute2_name}}
+          : {{productForm?.get('variants').value[i].attribute2_value}} </span>
+        <span
+          *ngIf="productForm?.get('variants').value[i].attribute3_name"> - {{productForm?.get('variants').value[i].attribute3_name}}
+          : {{productForm?.get('variants').value[i].attribute3_value}} </span>
+
+      </div>
+      <div class="col-4">
+        <label>Price</label>
+        <input class="form-control" formControlName="price" type="number"/>
+      </div>
+      <div class="col-4">
+        <label>Quantity</label>
+        <input class="form-control" formControlName="quantity" type="number"/>
+      </div>
+    </div>
+  </div>
+
+</form>

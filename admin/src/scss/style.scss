@@ -1,0 +1,18 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+
+input[type=checkbox] {
+  /* Double-sized Checkboxes */
+  transform: scale(1.5);
+  padding: 10px;
+}
+
+.form-check {
+  margin-top: 5px;
+}

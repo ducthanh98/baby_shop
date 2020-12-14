@@ -1,0 +1,68 @@
+<!-- Header Section Start -->
+<div class="header-section section">
+
+  <!-- Header Top Start -->
+  <div class="header-top header-top-one bg-theme-two">
+    <div class="container-fluid">
+      <div class="row align-items-center justify-content-center">
+
+        <div class="col mt-10 mb-10 d-none d-md-flex">
+          <!-- Header Top Left Start -->
+          <div class="header-top-left">
+            <p>Welcome to Jadusona</p>
+            <p>Hotline: <a href="tel:0123456789">0123 456 789</a></p>
+          </div><!-- Header Top Left End -->
+        </div>
+
+
+        <div class="col mt-10 mb-10">
+          <!-- Header Shop Links Start -->
+          <div class="header-top-right">
+
+            <p *ngIf="email == ''" ><a [routerLink]="['/auth','login']">Register</a><a [routerLink]="['/auth','login']">Login</a></p>
+            <p *ngIf="email != ''">Xin chào , {{email}} | <span [routerLink]="['/auth','login']" >Logout</span></p>
+
+          </div><!-- Header Shop Links End -->
+        </div>
+
+      </div>
+    </div>
+  </div><!-- Header Top End -->
+
+  <!-- Header Bottom Start -->
+  <div class="header-bottom header-bottom-one header-sticky">
+    <div class="container-fluid">
+      <div class="row menu-center align-items-center justify-content-between">
+
+        <div class="col mt-15 mb-15">
+          <!-- Logo Start -->
+          <div class="header-logo">
+            <a href="index.html">
+              <img src="assets/images/logo.png" alt="Jadusona">
+            </a>
+          </div><!-- Logo End -->
+        </div>
+
+        <div class="col order-2 order-lg-3">
+          <!-- Header Advance Search Start -->
+          <div class="header-shop-links">
+
+            <div class="header-mini-cart">
+              <a [routerLink]="['cart']"><img src="assets/images/icons/cart.png" alt="Cart"> <span></span></a>
+            </div>
+
+          </div><!-- Header Advance Search End -->
+        </div>
+
+        <div class="col order-3 order-lg-2">
+
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu order-12 d-block d-lg-none col"></div>
+
+      </div>
+    </div>
+  </div><!-- Header BOttom End -->
+
+</div><!-- Header Section End -->

@@ -1,0 +1,93 @@
+<div class="animated fadeIn">
+  <button type="button" class="btn btn-primary mr-1 mb-4 float-right" data-toggle="modal"
+          (click)="openCreateModal(null)">
+    <i class="fa fa-plus fa-lg mt-1"></i> Create Role
+  </button>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of roleData;let i = index">
+      <td>{{(pageNumber - 1) * pageSize + i + 1}}</td>
+      <td>{{data.role}}</td>
+
+      <td>
+        <i *ngIf="checkUpdatePermission()" class=" fa fa-lg mt-2 fa-edit icon-action"
+           (click)="openUpdateModal(data.id)"></i>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div bsModal #updateRoleModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Role</h4>
+          <button type="button" class="close" (click)="updateRoleModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="updateRoleForm" (ngSubmit)="onSubmitUpdateRole()">
+          <div class="modal-body">
+
+            <div class="form-group ">
+              <label for="permission">Permission</label>
+              <div class="form-check checkbox" formArrayName="permissions"
+                   *ngFor="let permission of updateRoleForm.controls.permissions.controls; let i = index">
+                <input class="form-check-input" (click)="autoCheckGetMethod(permissionData[i].code)" type="checkbox" [formControlName]="i">
+                <label class="form-check-label">
+                  {{permissionData[i].description}}
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="updateRoleModal.hide()">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <div bsModal #createRoleModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Role</h4>
+          <button type="button" class="close" (click)="updateRoleModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="createRoleForm" (ngSubmit)="onSubmitCreateRole()">
+          <div class="modal-body">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="company">Role Name</label>
+                <input formControlName="name" type="text" class="form-control"
+                       placeholder="Enter role name">
+              </div>
+
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="createRoleModal.hide()">Close</button>
+            <button type="submit" class="btn btn-primary" [disabled]="createRoleForm.invalid" >Save changes</button>
+          </div>
+        </form>
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+</div>

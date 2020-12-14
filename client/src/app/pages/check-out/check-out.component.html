@@ -1,0 +1,139 @@
+
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section" style="background-image: url(assets/images/hero/hero-1.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="page-banner-content col">
+
+        <h1>Checkout</h1>
+        <ul class="page-breadcrumb">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div><!-- Page Banner Section End -->
+
+<!-- Page Section Start -->
+<div class="page-section section section-padding">
+  <div class="container">
+
+    <!-- Checkout Form s-->
+    <form action="#" class="checkout-form" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+      <div class="row row-50 mbn-40">
+
+        <div class="col-lg-7">
+
+          <!-- Billing Address -->
+          <div id="billing-form" class="mb-20">
+            <h4 class="checkout-title">Billing Address</h4>
+
+            <div class="row">
+
+              <div class="col-md-6 col-12 mb-5">
+                <label>First Name*</label>
+                <input type="text" formControlName="first_name" placeholder="First Name">
+              </div>
+
+              <div class="col-md-6 col-12 mb-5">
+                <label>Last Name*</label>
+                <input type="text" formControlName="last_name" placeholder="Last Name">
+              </div>
+
+              <div class="col-md-6 col-12 mb-5">
+                <label>Email Address*</label>
+                <input type="email" formControlName="email" placeholder="Email Address">
+              </div>
+
+              <div class="col-md-6 col-12 mb-5">
+                <label>Phone no*</label>
+                <input type="text" formControlName="phone" placeholder="Phone number">
+              </div>
+
+              <div class="col-12 mb-5">
+                <label>Address*</label>
+                <input type="text" placeholder="Address line 1" formControlName="address1">
+                <input type="text" placeholder="Address line 2" formControlName="address2">
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="col-lg-5">
+          <div class="row">
+
+            <!-- Cart Total -->
+            <div class="col-12 mb-40">
+
+              <h4 class="checkout-title">Cart Total</h4>
+
+              <div class="checkout-cart-total">
+
+                <h4>Product <span>Total</span></h4>
+
+                <ul>
+                  <li *ngFor="let item of cart">{{item.product}} X {{item.quantity}} <span>$ {{item.price * item.quantity}}</span></li>
+                </ul>
+
+                <h4>Grand Total <span>$ {{amount}}</span></h4>
+
+              </div>
+
+            </div>
+
+            <!-- Payment Method -->
+            <div class="col-12 mb-40">
+
+              <button type="submit" class="place-order" [disabled]="orderForm.invalid" >Place order</button>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</div><!-- Page Section End -->
+
+<!-- Brand Section Start -->
+<div class="brand-section section section-padding pt-0">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="brand-slider">
+
+        <div class="brand-item col">
+          <img src="assets/images/brands/brand-1.png" alt="">
+        </div>
+
+        <div class="brand-item col">
+          <img src="assets/images/brands/brand-2.png" alt="">
+        </div>
+
+        <div class="brand-item col">
+          <img src="assets/images/brands/brand-3.png" alt="">
+        </div>
+
+        <div class="brand-item col">
+          <img src="assets/images/brands/brand-4.png" alt="">
+        </div>
+
+        <div class="brand-item col">
+          <img src="assets/images/brands/brand-5.png" alt="">
+        </div>
+
+        <div class="brand-item col">
+          <img src="assets/images/brands/brand-6.png" alt="">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><!-- Brand Section End -->

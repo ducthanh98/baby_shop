@@ -1,0 +1,80 @@
+<!-- Page Section Start -->
+<ng-container *ngFor="let product of products">
+  <div class="page-section section section-padding"  *ngIf="checkVariant(product)">
+    <div class="container">
+      <div class="row row-30 mbn-50">
+
+        <div class="col-12">
+          <div class="row row-20 mb-10">
+
+            <div class="col-lg-6 col-12 mb-40">
+
+              <div class="pro-large-img mb-10 fix easyzoom easyzoom--overlay easyzoom--with-thumbnails">
+                <a href="assets/images/product/product-zoom-1.jpg">
+                  <img :src="http://localhost:3000/api/files/get/{{products[0].path}}" alt=""/>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-12 mb-40">
+              <div class="single-product-content">
+
+                <div class="head">
+                  <div class="head-left">
+                    <h3 class="title">{{getNameVariant(product)}}</h3>
+                  </div>
+
+                  <div class="head-right">
+                    <span class="price">{{product.price}} $</span>
+                  </div>
+                </div>
+
+                <div class="description">
+                  <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione
+                    voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                    adipisci velit, sed quia non numquam eius modi tempora inform</p>
+                </div>
+
+                <span class="availability">Availability: <span>{{product.quantity}}</span></span>
+
+                <div class="quantity-colors">
+
+                  <div class="quantity">
+                    <h5>Quantity:</h5>
+                    <div class="pro-qty"><input [(ngModel)]="quantity" type="text" ></div>
+                  </div>
+
+                </div>
+
+                <ng-container *ngFor="let key of keys(attributes)">
+                  <div class="quantity-colors">
+
+                    <div class="colors">
+                      <h5>{{key}}:</h5>
+                        <span *ngFor="let attr of attributes[key]" [style.marginRight]="'10px'" [style.display]="'inline-block'" [style.cursor]="'pointer'" [style.border]="'1px solid #94c7eb'" [style.padding]="'5px'"
+                              (click)="setAttributeVariant(key,attr)">{{attr}}</span>
+                    </div>
+
+                  </div>
+                </ng-container>
+
+
+                <div class="actions">
+
+                  <button (click)="onSubmit(product)"><i class="ti-shopping-cart"></i><span>BUY</span></button>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div><!-- Page Section End -->
+</ng-container>
+
+

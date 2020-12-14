@@ -1,0 +1,96 @@
+<!-- Hero Section Start -->
+<div class="hero-section section">
+
+  <!-- Hero Slider Start -->
+  <div class="hero-slider hero-slider-one fix">
+
+    <!-- Hero Item Start -->
+    <div class="hero-item" style="background-image: url(assets/images/hero/hero-1.jpg)">
+
+      <!-- Hero Content -->
+      <div class="hero-content">
+
+        <h1>Get 35% off <br>Latest Baby Product</h1>
+        <a href="#">SHOP NOW</a>
+
+      </div>
+
+    </div><!-- Hero Item End -->
+
+    <!-- Hero Item Start -->
+    <div class="hero-item" style="background-image: url(assets/images/hero/hero-2.jpg)">
+
+      <!-- Hero Content -->
+      <div class="hero-content">
+
+        <h1>Get 35% off <br>Latest Baby Product</h1>
+        <a href="#">SHOP NOW</a>
+
+      </div>
+
+    </div><!-- Hero Item End -->
+
+  </div><!-- Hero Slider End -->
+
+</div><!-- Hero Section End -->
+
+
+<!-- Product Section Start -->
+<div class="product-section section section-padding">
+  <div class="container">
+
+    <div class="row">
+      <div class="section-title text-center col mb-30">
+        <h1>Popular Products</h1>
+        <p>All popular product find here</p>
+      </div>
+    </div>
+
+    <div class="row mbn-40">
+
+      <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-40" *ngFor="let product of products">
+
+        <div class="product-item" [routerLink]="['/pages/products',product.id]">
+          <div class="product-inner">
+
+            <div class="image">
+              <img :src="http://localhost:3000/api/files/get/{{product.path}}" alt="">
+
+            </div>
+
+            <div class="content">
+
+              <div class="content-left">
+
+                <h4 class="title"><a href="single-product.html">{{product.name}}</a></h4>
+
+                <div class="ratting">
+
+                </div>
+                <ng-container *ngFor="let key of keys(product.attributes)" >
+                  <h5 [className]="key.toLowerCase()" *ngIf="key != 'null'">{{key}}:
+                    <ng-container *ngFor="let attr of product.attributes[key]">
+                      <span *ngIf="key.toLowerCase().includes('color') " [style.backgroundColor]="attr"></span>
+                      <span *ngIf="!key.toLowerCase().includes('color')">{{attr}}</span></ng-container>
+                  </h5>
+
+                </ng-container>
+
+              </div>
+
+              <div class="content-right">
+                <span class="price">$25</span>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div><!-- Product Section End -->
+

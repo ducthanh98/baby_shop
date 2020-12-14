@@ -1,0 +1,120 @@
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section" style="background-image: url(assets/images/hero/hero-1.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="page-banner-content col">
+
+        <h1>Cart</h1>
+        <ul class="page-breadcrumb">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div><!-- Page Banner Section End -->
+
+<!-- Page Section Start -->
+<div class="page-section section section-padding">
+  <div class="container">
+
+    <form action="#">
+      <div class="row mbn-40">
+        <div class="col-12 mb-40">
+          <div class="cart-table table-responsive">
+            <table>
+              <thead>
+              <tr>
+                <th class="pro-thumbnail">Image</th>
+                <th class="pro-title">Product</th>
+                <th class="pro-price">Price</th>
+                <th class="pro-quantity">Quantity</th>
+                <th class="pro-subtotal">Total</th>
+                <th class="pro-remove">Remove</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of cart;let i=index">
+                <td class="pro-thumbnail"><a href="#"><img :src="http://localhost:3000/api/files/get/{{item.image}}" /></a></td>
+                <td class="pro-title"><a href="#">{{item.product}}</a></td>
+                <td class="pro-price"><span class="amount">${{item.price}}</span></td>
+                <td class="pro-quantity"><div class="pro-qty"><input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.quantity"></div></td>
+                <td class="pro-subtotal">${{item.quantity * item.price}}</td>
+                <td class="pro-remove" style="cursor: pointer" (click)="removeItem(i)" ><div >×</div></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-lg-8 col-md-7 col-12 mb-40">
+          <div class="cart-buttons mb-30">
+            <a href="#">Continue Shopping</a>
+          </div>
+<!--          <div class="cart-coupon">-->
+<!--            <h4>Coupon</h4>-->
+<!--            <p>Enter your coupon code if you have one.</p>-->
+<!--            <div class="cuppon-form">-->
+<!--              <input type="text" placeholder="Coupon code" />-->
+<!--              <input type="submit" value="Apply Coupon" />-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+        <div class="col-lg-4 col-md-5 col-12 mb-40">
+          <div class="cart-total fix">
+            <h3>Cart Totals</h3>
+            <table>
+              <tbody>
+              <tr class="order-total">
+                <th>Total</th>
+                <td>
+                  <strong><span class="amount">$ {{amount}}</span></strong>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="proceed-to-checkout section mt-30">
+              <a routerLink="/pages/check-out">Proceed to Checkout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div><!-- Page Section End -->
+
+<!-- Brand Section Start -->
+<div class="brand-section section section-padding pt-0">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="brand-slider">
+
+        <div class="brand-item col">
+          <img src="assets/images/brands/brand-1.png" alt="">
+        </div>
+
+        <div class="brand-item col">
+          <img src="assets/images/brands/brand-2.png" alt="">
+        </div>
+
+        <div class="brand-item col">
+          <img src="assets/images/brands/brand-3.png" alt="">
+        </div>
+
+        <div class="brand-item col">
+          <img src="assets/images/brands/brand-4.png" alt="">
+        </div>
+
+        <div class="brand-item col">
+          <img src="assets/images/brands/brand-5.png" alt="">
+        </div>
+
+        <div class="brand-item col">
+          <img src="assets/images/brands/brand-6.png" alt="">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><!-- Brand Section End -->

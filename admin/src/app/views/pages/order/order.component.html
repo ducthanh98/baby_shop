@@ -1,0 +1,55 @@
+
+<div class="row d-flex justify-content-center">
+  <div class="col-6">
+    <label>ID</label>
+    <input class="form-control" [(ngModel)]="id" min="0" type="number">
+  </div>
+  <div class="col-6">
+    <label>Email</label>
+    <input class="form-control" [(ngModel)]="email" type="text">
+  </div>
+  <button type="button" class="btn mt-4 btn-primary mr-1 mb-4 " data-toggle="modal" (click)="getListOrder(1)">
+    <i class="fa search fa-lg mt-1"></i> Search Order
+  </button>
+</div>
+<div class="animated fadeIn">
+  <!--  <button type="button" class="btn btn-primary mr-1 mb-4 float-right" data-toggle="modal" (click)="openModal(null)">-->
+  <!--    <i class="fa fa-plus fa-lg mt-1"></i> Add User-->
+  <!--  </button>-->
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Created At</th>
+      <th>Status</th>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of orders;let i = index">
+      <td>{{data.id}}</td>
+      <td>{{data.products[0].email}}</td>
+      <td>{{data.products[0].created_at}}</td>
+      <td>
+        <div class="badge badge-primary" *ngIf="data.products[0].status == 1">Pending</div>
+        <div class="badge badge-success" *ngIf="data.products[0].status == 2">Done</div>
+        <div class="badge badge-danger" *ngIf="data.products[0].status == 3">Cancelled</div>
+      </td>
+      <td>
+        <div *ngFor="let product of data.products">{{generateProductInfo(product)}}</div>
+      </td>
+      <td>$ {{getPrice(data.products)}}</td>
+      <td>
+        <i *ngIf="data.products[0].status ==1 && checkUpdatePermission('PUT')" (click)="openConfirm(data.id,2,data.products[0])" class="cui-check icons font-2xl text-success"></i>
+        <i *ngIf="data.products[0].status ==1 && checkUpdatePermission('PUT')" (click)="openConfirm(data.id,3,data.products[0])" class="cui-ban icons font-2xl text-danger"></i>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <app-pagination [totalPages]="totalPages" (selectPage)="getListOrder($event)"></app-pagination>
+  <app-confirm-dialog (delete)="updateStatusOrder()"></app-confirm-dialog>
+
+</div>
