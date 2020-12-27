@@ -36,7 +36,7 @@ export class CommonService {
     return httpParams
   }
 
-  doGet<T>(url: string, header?: HttpHeaders, params?: HttpParams): Observable<T> {
+  doGet<T>(url: string, header?: HttpHeaders, params?): Observable<T> {
     const requestUrl = `${this.baseUrl}${url}`;
     return this.http.get<T>(requestUrl, {headers: header, params: params});
   }

@@ -6,6 +6,7 @@ import {RoleComponent} from './role/role.component';
 import {ProductComponent} from "./product/product.component";
 import {ProductDetailComponent} from "./product-detail/product-detail.component";
 import {OrderComponent} from "./order/order.component";
+import { ProductUpdateComponent } from './product-update/product-update.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,16 @@ const routes: Routes = [
     },
     canActivate: [AuthguardtokenGuard],
     component: ProductDetailComponent
+  },
+  {
+    path: 'products/:id',
+    data: {
+      title: 'Update Product',
+      screen: 'PRODUCT',
+      isDefault: true,
+    },
+    canActivate: [AuthguardtokenGuard],
+    component: ProductUpdateComponent
   },
   {
     path: 'order',

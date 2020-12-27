@@ -17,7 +17,7 @@
       <td>{{data.name}}</td>
       <td><img width="300px" height="300px" :src="http://localhost:3000/api/files/get/{{data.path}}" /></td>
       <td>
-        <i *ngIf="checkUpdatePermission('PUT')" class=" fa fa-lg mt-2 fa-edit icon-action" ></i>
+        <i [routerLink]="['/products',data.id]" routerLinkActive="router-link-active"  *ngIf="checkUpdatePermission('PUT')" class=" fa fa-lg mt-2 fa-edit icon-action" ></i>
       </td>
     </tr>
     </tbody>

@@ -19,8 +19,12 @@ export class RoleManager {
         return this.manager.query("EXEC sp_get_permission_by_role_id @0", [id])
     }
 
-    UpdateRolePermission(id,permission_ids) {
-        return this.manager.query("EXEC sp_update_role_permission @0,@1", [id,permission_ids])
+    GetRoleByID(id) {
+        return this.manager.query("EXEC sp_role_get_by_id @0", [id])
+    }
+
+    UpdateRolePermission(id,{permission_ids,name,status}) {
+        return this.manager.query("EXEC sp_update_role_permission @0,@1,@2,@3", [id,name,status,permission_ids])
     }
 
     CreateRole(name) {

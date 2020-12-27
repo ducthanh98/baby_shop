@@ -17,8 +17,13 @@ export class UserManager {
         return this.manager.query("EXEC sp_get_role_by_user_id @0",[id] )
     }
 
-    UpdateUserRole(id,role_ids) {
-        return this.manager.query("EXEC sp_update_user_role @0,@1",[id,role_ids] )
+    GetUserByID(id:number) {
+        return this.manager.query("EXEC sp_get_user_by_id @0",[id] )
+    }
+
+    UpdateUser(id,{firstname,lastname,address,password,ids,status}) {
+        const role_ids = ids;
+        return this.manager.query("EXEC sp_user_update @0,@1,@2,@3,@4,@5,@6",[id,firstname,lastname,address,status,password,role_ids] )
     }
 
     CountAllBy(email,address,status) {

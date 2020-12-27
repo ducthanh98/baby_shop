@@ -40,6 +40,7 @@ export class OrderService {
     async createOrder(body, userID) {
         const response: IResponse<any> = {message: Message.SUCCESS, statusCode: Code.SUCCESS}
         try {
+            console.log(body)
             const {order_items} = body
             const orderItemTable = new sql.Table()
             orderItemTable.columns.add('product_variant_id', sql.Int())

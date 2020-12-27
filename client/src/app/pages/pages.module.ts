@@ -12,6 +12,7 @@ import {SafeHtmlPipe} from '../shared/pipes/safehtml.pipe';
 import {ProductComponent} from './product/product.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CheckOutComponent } from './check-out/check-out.component';
     ...pageRoutingComponent,
     ProductComponent,
     CartComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    ProductsComponent
   ],
   imports: [
     CommonModule,

@@ -4,7 +4,7 @@
 /*-- Variables --*/
 var windows = $(window);
 var screenSize = windows.width();
-    
+
 
 /*-- Product Hover Function --*/
 $(window).on('load', function(){
@@ -30,8 +30,8 @@ $(window).on('load', function(){
     productHover();
     windows.resize(productHover);
 });
-    
-    
+
+
 /*--
     Menu Sticky
 -----------------------------------*/
@@ -66,7 +66,7 @@ var searchToggle = $('.search-toggle');
 var searchWrap = $('.header-search-wrap');
 
 searchToggle.on('click', function(){
-    
+
     if( !$(this).hasClass('active') ) {
         $(this).addClass('active');
         searchWrap.addClass('active');
@@ -74,7 +74,7 @@ searchToggle.on('click', function(){
         $(this).removeClass('active');
         searchWrap.removeClass('active');
     }
-    
+
 });
 /*--
     Header Cart
@@ -93,7 +93,7 @@ closeCart.on('click', function(e){
     $('.cart-overlay').removeClass('visible');
     miniCartWrap.removeClass('open');
 });
-    
+
 /*--
     Hero Slider
 --------------------------------------------*/
@@ -111,7 +111,7 @@ heroSlider.slick({
     prevArrow: '<button type="button" class="slick-prev"><i class="icofont icofont-long-arrow-left"></i></button>',
     nextArrow: '<button type="button" class="slick-next"><i class="icofont icofont-long-arrow-right"></i></button>',
 });
-    
+
 /*--
 	Product Slider
 -----------------------------------*/
@@ -155,7 +155,7 @@ $('.small-product-slider').slick({
         }
     ]
 });
-    
+
 $('.best-deal-slider, .deal-product-slider').slick({
     arrows: false,
     dots: false,
@@ -165,8 +165,8 @@ $('.best-deal-slider, .deal-product-slider').slick({
     prevArrow: '<button type="button" class="slick-prev"><i class="icofont icofont-long-arrow-left"></i></button>',
     nextArrow: '<button type="button" class="slick-next"><i class="icofont icofont-long-arrow-right"></i></button>',
 });
-    
-/*----- 
+
+/*-----
 	Testimonial Slider
 --------------------------------*/
 $('.testimonial-slider').slick({
@@ -225,7 +225,7 @@ $('.brand-slider').slick({
         }
     ]
 });
-    
+
 /*--
 	Product Slider
 -----------------------------------*/
@@ -326,8 +326,8 @@ $('.related-product-slider-2').slick({
         }
     ]
 });
-    
-/*----- 
+
+/*-----
 	Product Zoom
 --------------------------------*/
 // Instantiate EasyZoom instances
@@ -354,7 +354,7 @@ $('[data-countdown]').each(function() {
 		$this.html(event.strftime('<span class="cdown day"><span class="time-count">%-D</span> <p>Days</p></span> <span class="cdown hour"><span class="time-count">%-H</span> <p>Hours</p></span> <span class="cdown minutes"><span class="time-count">%M</span> <p>Mint</p></span> <span class="cdown second"><span class="time-count">%S</span> <p>Secs</p></span>'));
 	});
 });
-    
+
 /*--
 	MailChimp
 -----------------------------------*/
@@ -366,14 +366,14 @@ $('#mc-form').ajaxChimp({
 
 });
 function mailChimpResponse(resp) {
-	
+
 	if (resp.result === 'success') {
 		$('.mailchimp-success').html('' + resp.msg).fadeIn(900);
 		$('.mailchimp-error').fadeOut(400);
-		
+
 	} else if(resp.result === 'error') {
 		$('.mailchimp-error').html('' + resp.msg).fadeIn(900);
-	}  
+	}
 }
 
 /*--
@@ -385,12 +385,9 @@ $.scrollUp({
     animation: 'fade',
     scrollText: '<i class="icofont icofont-swoosh-up"></i>',
 });
-    
-/*--
-    Nice Select
-------------------------*/
-$('.nice-select').niceSelect()
-    
+
+
+
 /*--
 	Price Range Slider
 ------------------------*/
@@ -404,9 +401,9 @@ $('#price-range').slider({
    }
   });
 $('#price-amount').val( '$' + $('#price-range').slider( 'values', 0 ) +
-   '  -  $' + $('#price-range').slider('values', 1 ) ); 
-    
-/*----- 
+   '  -  $' + $('#price-range').slider('values', 1 ) );
+
+/*-----
 	Quantity
 --------------------------------*/
 $('.pro-qty').prepend('<span class="dec qtybtn"><i class="ti-minus"></i></span>');
@@ -425,11 +422,11 @@ $('.qtybtn').on('click', function() {
 	  }
 	  }
 	$button.parent().find('input').val(newVal);
-});  
-    
-/*----- 
+});
+
+/*-----
 	Shipping Form Toggle
---------------------------------*/ 
+--------------------------------*/
 $('[data-shipping]').on('click', function(){
     if( $('[data-shipping]:checked').length > 0 ) {
         $('#shipping-form').slideDown();
@@ -437,18 +434,18 @@ $('[data-shipping]').on('click', function(){
         $('#shipping-form').slideUp();
     }
 })
-    
-/*----- 
+
+/*-----
 	Payment Method Select
 --------------------------------*/
 $('[name="payment-method"]').on('click', function(){
-    
+
     var $value = $(this).attr('value');
 
     $('.single-method p').slideUp();
     $('[data-method="'+$value+'"]').slideDown();
-    
+
 })
-    
-   
-})(jQuery);	
+
+
+})(jQuery);

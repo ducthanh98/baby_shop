@@ -1,14 +1,14 @@
-import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-import {ModalDirective} from 'ngx-bootstrap/modal';
-import {ConfirmDialogComponent} from '../../../shared/components/confirm-dialog/confirm-dialog.component';
-import {Validators, FormGroup, FormBuilder, AbstractControl, FormArray, FormControl} from '@angular/forms';
-import {WebConstants} from '../../../shared/constants/constants';
-import {IBody} from '../../../shared/interfaces/body.interface';
-import {IResponse} from '../../../shared/interfaces/Iresponse.interface';
-import {Amentities} from '../amentities/amentities.model';
-import {CommonService} from '../../../shared/common/common.service';
-import {ToastrService} from 'ngx-toastr';
-import {AuthService} from "../../auth/auth.service";
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { Validators, FormGroup, FormBuilder, AbstractControl, FormArray, FormControl } from '@angular/forms';
+import { WebConstants } from '../../../shared/constants/constants';
+import { IBody } from '../../../shared/interfaces/body.interface';
+import { IResponse } from '../../../shared/interfaces/Iresponse.interface';
+import { Amentities } from '../amentities/amentities.model';
+import { CommonService } from '../../../shared/common/common.service';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from "../../auth/auth.service";
 
 enum Active {
   active = 1,
@@ -34,6 +34,7 @@ export class UserComponent implements OnInit, AfterViewInit {
   email = '';
   address = '';
   status = '';
+  userInfo = {} as any;
 
 
   constructor(
@@ -72,6 +73,12 @@ export class UserComponent implements OnInit, AfterViewInit {
 
   initForm() {
     this.userForm = this.fb.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: [{value:'', disabled: true}, [Validators.required, Validators.email]],
+      address: [''],
+      password: [''],
+      status: [true, Validators.required],
       roles: new FormArray([])
     });
 
@@ -153,7 +160,8 @@ export class UserComponent implements OnInit, AfterViewInit {
         .subscribe(
           (res: IResponse<any>) => {
             if (res.statusCode === 0) {
-              const data = res.data
+              this.userInfo = res.data.user;
+              const data = res.data.permissions;
 
               const existRole = []
 
@@ -169,6 +177,15 @@ export class UserComponent implements OnInit, AfterViewInit {
               }
               const forms = (this.userForm.controls.roles as FormArray)
               forms.setValue(existRole)
+
+              this.userForm.patchValue({
+                firstname:this.userInfo.firstname,
+                lastname:this.userInfo.lasname,
+                email: this.userInfo.email,
+                address:this.userInfo.address,
+                password:'',
+                status: this.userInfo.status
+              })
 
             } else {
               this.userData = [];
@@ -190,7 +207,7 @@ export class UserComponent implements OnInit, AfterViewInit {
 
   onSubmit() {
     let url = '';
-    let body: any = {ids: this.getSelectedRoles()};
+    let body: any = { ids: this.getSelectedRoles(),...this.userForm.value };
     url = `user/${this.id}`;
 
     this.commonService.doPut(url, body)

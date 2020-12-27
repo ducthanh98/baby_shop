@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {debounce, debounceTime} from 'rxjs/operators';
-import {ToastrService} from 'ngx-toastr';
-import {CommonService} from "../../../shared/common/common.service";
-import {IResponse} from "../../../shared/interfaces/Iresponse.interface";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { debounce, debounceTime } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+import { CommonService } from "../../../shared/common/common.service";
+import { IResponse } from "../../../shared/interfaces/Iresponse.interface";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-product-detail',
@@ -14,6 +14,8 @@ import {Router} from "@angular/router";
 export class ProductDetailComponent implements OnInit {
   productForm: FormGroup;
   path = '';
+  categories = [];
+
 
   constructor(private fb: FormBuilder, private toastrService: ToastrService, private commonService: CommonService, private router: Router) {
   }
@@ -21,9 +23,11 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
+      category_id: ['', Validators.required],
       options: new FormArray([]),
       variants: new FormArray([])
     });
+    this.fetchCategories();
 
     this.addProductAttribute();
     this.generateVariants();
@@ -113,6 +117,24 @@ export class ProductDetailComponent implements OnInit {
       );
   }
 
+  fetchCategories() {
+    this.commonService.doGet('product/category')
+      .subscribe(
+        (res: IResponse<any>) => {
+          if (res.statusCode === 0) {
+            this.categories = res.data;
+            this.getProduct();
+
+          } else {
+            this.categories = [];
+            this.toastrService.error(res.message);
+          }
+        }, (err) => {
+          this.toastrService.error(err.message);
+        }
+      );
+  }
+
 
   addProductAttribute() {
     const formArray = (this.productForm.controls.options as FormArray);
@@ -130,7 +152,16 @@ export class ProductDetailComponent implements OnInit {
     if (this.path == '') {
       return this.toastrService.error('Image is required');
     }
-    const body = {...this.productForm.value};
+    const body = { ...this.productForm.value };
+
+    if (!body.category_id ) {
+      return this.toastrService.error('Category ID is required');
+    }
+
+    if (!body.name) {
+      return this.toastrService.error('Name is required');
+    }
+
     const options = [];
 
     try {
@@ -138,7 +169,7 @@ export class ProductDetailComponent implements OnInit {
       for (let i = 0; i < body.options.length; i++) {
 
         for (let j = 0; j < body.options[i].value.length; j++) {
-          options.push({name: body.options[i].name, value: body.options[i].value[j].value})
+          options.push({ name: body.options[i].name, value: body.options[i].value[j].value })
         }
 
       }

@@ -28,12 +28,15 @@ export class UserService {
         return response
     }
 
-    async GetRoleByUserID(id: number) {
+    async GetUserByID(id: number) {
         const response: IResponse<any> = {message: Message.SUCCESS, statusCode: Code.SUCCESS}
         try {
 
-            const list = await this.userRepository.GetRoleByUserID(id)
-            response.data = list;
+            const result = await Promise.all([this.userRepository.GetRoleByUserID(id),this.userRepository.GetUserByID(id)])
+            if(!result[1].length){
+                throw new Error("Not found")
+            }
+            response.data = {user:result[1][0],permissions:result[0]};
 
         } catch (e) {
 
@@ -44,13 +47,17 @@ export class UserService {
         return response
     }
 
-    async UpdateUserRole(id: any, role_ids) {
+    async UpdateUser(id: any, body) {
+        console.log(body)
+        body.ids = body.ids.join(',');
+        body.password = body.password.trim();
+        body.password = body.password ? body.password : null;
         const response: IResponse<any> = {message: Message.SUCCESS, statusCode: Code.SUCCESS}
         try {
             if (id == 10893) {
                 throw new Error("Permission denied")
             }
-            const result = await this.userRepository.UpdateUserRole(id, role_ids.join(','))
+            const result = await this.userRepository.UpdateUser(id, body)
 
         } catch (e) {
             response.statusCode = Code.ERROR

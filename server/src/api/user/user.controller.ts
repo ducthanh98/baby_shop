@@ -20,13 +20,13 @@ export class UserController {
     @SetMetadata<string, string>(PERMISSION_KEY, USER_PERMISSION)
     @Get('/:id')
     GetPermissionByUserID(@Param('id') id: number = 0) {
-        return this.userService.GetRoleByUserID(id)
+        return this.userService.GetUserByID(id)
     }
 
     @UseGuards(AuthGuard)
     @SetMetadata<string, string>(PERMISSION_KEY, USER_PERMISSION)
     @Put('/:id')
     UpdateUser(@Param('id') id: number = 0, @Body() body: any) {
-        return this.userService.UpdateUserRole(id, body.ids)
+        return this.userService.UpdateUser(id, body)
     }
 }

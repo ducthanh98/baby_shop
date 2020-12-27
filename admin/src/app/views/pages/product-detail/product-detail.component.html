@@ -12,6 +12,10 @@
         <label for="name">Name</label>
         <input class="form-control" formControlName="name" type="text">
       </div>
+      <label for="name">Category</label>
+      <select class="form-control" formControlName="category_id">
+        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+      </select>
     </div>
     <div class="col-4">
       <div class="form-group ">
@@ -29,11 +33,11 @@
   <b>Options</b>
 
   <div class="form-group" formArrayName="options"
-       *ngFor="let option of productForm.controls.options.controls; let i = index">
+    *ngFor="let option of productForm.controls.options.controls; let i = index">
     <div class="row" [formGroupName]="i">
       <div class="col-2">
         <label for="name">Option {{i + 1}}</label>
-        <input class="form-control" formControlName="name" style="margin-top: 5px"/>
+        <input class="form-control" formControlName="name" style="margin-top: 5px" />
       </div>
       <div class="col-10">
         <label for="name">Value</label>
@@ -41,34 +45,33 @@
       </div>
     </div>
   </div>
-  <button type="button" class="btn btn-primary mr-1 mb-4" data-toggle="modal"
-          (click)="addProductAttribute()">
+  <button type="button" class="btn btn-primary mr-1 mb-4" data-toggle="modal" (click)="addProductAttribute()">
     <i class="fa fa-plus fa-lg mt-1"></i> Add Attribute
   </button>
-  <br/>
+  <br />
 
   <b>Variants</b>
   <div class="form-group" formArrayName="variants"
-       *ngFor="let option of productForm.controls.variants.controls; let i = index">
+    *ngFor="let option of productForm.controls.variants.controls; let i = index">
     <div class="row" [formGroupName]="i">
       <div class="col-4" style="padding-top:45px;">
         <span>{{productForm?.get('variants').value[i].attribute1_name}}
           : {{productForm?.get('variants').value[i].attribute1_value}} </span>
-        <span
-          *ngIf="productForm?.get('variants').value[i].attribute2_name"> - {{productForm?.get('variants').value[i].attribute2_name}}
+        <span *ngIf="productForm?.get('variants').value[i].attribute2_name"> -
+          {{productForm?.get('variants').value[i].attribute2_name}}
           : {{productForm?.get('variants').value[i].attribute2_value}} </span>
-        <span
-          *ngIf="productForm?.get('variants').value[i].attribute3_name"> - {{productForm?.get('variants').value[i].attribute3_name}}
+        <span *ngIf="productForm?.get('variants').value[i].attribute3_name"> -
+          {{productForm?.get('variants').value[i].attribute3_name}}
           : {{productForm?.get('variants').value[i].attribute3_value}} </span>
 
       </div>
       <div class="col-4">
         <label>Price</label>
-        <input class="form-control" formControlName="price" type="number"/>
+        <input class="form-control" formControlName="price" type="number" />
       </div>
       <div class="col-4">
         <label>Quantity</label>
-        <input class="form-control" formControlName="quantity" type="number"/>
+        <input class="form-control" formControlName="quantity" type="number" />
       </div>
     </div>
   </div>

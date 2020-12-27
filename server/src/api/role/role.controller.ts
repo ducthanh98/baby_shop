@@ -9,7 +9,6 @@ export class RoleController {
     }
 
     @UseGuards(AuthGuard)
-    @SetMetadata<string, string>(PERMISSION_KEY, ROLE_PERMISSION)
     @Get('')
     GetAllBy() {
         return this.roleService.GetAll()
@@ -26,7 +25,7 @@ export class RoleController {
     @SetMetadata<string, string>(PERMISSION_KEY, ROLE_PERMISSION)
     @Put('/:id')
     UpdateUserRole(@Param('id') id: number = 0, @Body() body: any) {
-        return this.roleService.UpdateRolePermission(id, body.ids)
+        return this.roleService.UpdateRolePermission(id, body)
     }
 
     @UseGuards(AuthGuard)

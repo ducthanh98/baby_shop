@@ -65,6 +65,8 @@ export class RoleComponent implements OnInit, AfterViewInit {
 
   initForm() {
     this.updateRoleForm = this.fb.group({
+      name:['',Validators.required],
+      status:[true,Validators.required],
       permissions: new FormArray([])
     });
 
@@ -134,7 +136,14 @@ export class RoleComponent implements OnInit, AfterViewInit {
         .subscribe(
           (res: IResponse<any>) => {
             if (res.statusCode === 0) {
-              const data = res.data;
+              const {role} = res.data;
+
+              this.updateRoleForm.patchValue({
+                name:role.role,
+                status:role.active
+              })
+
+              const data = res.data.permissions;
 
               const existRole = [];
 
@@ -170,7 +179,7 @@ export class RoleComponent implements OnInit, AfterViewInit {
 
   onSubmitUpdateRole() {
     let url = '';
-    const body: any = {ids: this.getSelectedPermissions()};
+    const body: any = {ids: this.getSelectedPermissions(),...this.updateRoleForm.value};
     url = `role/${this.id}`;
 
     this.commonService.doPut(url, body)

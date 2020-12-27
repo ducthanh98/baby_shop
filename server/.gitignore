@@ -32,3 +32,10 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+.idea/

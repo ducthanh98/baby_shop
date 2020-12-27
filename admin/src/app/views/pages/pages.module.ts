@@ -15,10 +15,11 @@ import {ProductComponent} from './product/product.component';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
 import {TagInputModule} from "ngx-chips";
 import { OrderComponent } from './order/order.component';
+import { ProductUpdateComponent } from './product-update/product-update.component';
 
 
 @NgModule({
-  declarations: [AmentitiesComponent, UserComponent, RoleComponent, ProductComponent, ProductDetailComponent, OrderComponent],
+  declarations: [AmentitiesComponent, UserComponent, RoleComponent, ProductComponent, ProductDetailComponent, OrderComponent, ProductUpdateComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,

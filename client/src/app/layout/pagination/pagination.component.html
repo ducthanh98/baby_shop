@@ -1,0 +1,8 @@
+<div class="col-12">
+  <ul class="page-pagination">
+    <li (click)="nextOrPrevPage(false)"><div href="#"><i class="fa fa-angle-left"></i></div></li>
+    <li class="{{i === pageNumber ? 'active' : ''}}" ><div href="#">1</div></li>
+
+    <li (click)="nextOrPrevPage(true)"><div href="#"><i class="fa fa-angle-right"></i></div></li>
+  </ul>
+</div>

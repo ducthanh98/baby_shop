@@ -4,10 +4,10 @@
     Version: 1.0
 
 -----------------------------------------------------------------------------------
-    
+
     CSS INDEX
     ===================
-	
+
     01. Theme default CSS
 	02. Header CSS
         02.1 Header Top
@@ -117,7 +117,7 @@ ul {
   margin: 0;
   padding: 0; }
 
-/*-- 
+/*--
     - Common Classes
 -----------------------------------------*/
 .fix {
@@ -231,7 +231,7 @@ ul {
   flex: 0 0;
   max-width: none; }
 
-/*-- 
+/*--
     - Input Placeholder
 -----------------------------------------*/
 input:-moz-placeholder, textarea:-moz-placeholder {
@@ -250,8 +250,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
 
-/*-- 
-    Scroll Up 
+/*--
+    Scroll Up
 -----------------------------------------*/
 #scrollUp {
   width: 40px;
@@ -321,14 +321,14 @@ img.mfp-img {
       opacity: 1;
       overflow: visible; }
 
-/*-- 
-    Button 
+/*--
+    Button
 -----------------------------------------*/
 .btn-round {
   border-radius: 50px !important; }
 
-/*-- 
-    Page Pagination 
+/*--
+    Page Pagination
 -----------------------------------------*/
 .page-pagination {
   display: -webkit-box;
@@ -2515,7 +2515,6 @@ img.mfp-img {
 /*----------------------------------------*/
 /*-- Noumber Of Product Show --*/
 .product-show {
-  float: left;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2534,8 +2533,8 @@ img.mfp-img {
   .product-show .nice-select {
     clear: none;
     line-height: 36px;
-    height: 38px;
-    width: 70px; }
+    width: 67%;
+    height: 38px;}
     .product-show .nice-select::after {
       height: 6px;
       width: 6px;
@@ -2550,7 +2549,6 @@ img.mfp-img {
 
 /*-- Product Short --*/
 .product-short {
-  float: right;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2570,7 +2568,7 @@ img.mfp-img {
     clear: none;
     line-height: 36px;
     height: 38px;
-    width: 180px; }
+    width: 80%; }
     .product-short .nice-select::after {
       height: 6px;
       width: 6px;
@@ -2698,7 +2696,7 @@ img.mfp-img {
     .product-item .product-inner .content .content-left {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 calc(100% - 50px);
-      flex: 0 0 calc(100% - 50px);
+      flex: 0 0 calc(100% - 125px);
       /*-- Title --*/
       /*-- Ratting --*/
       /*-- Size --*/
@@ -2750,8 +2748,8 @@ img.mfp-img {
           margin-top: 3px; }
     .product-item .product-inner .content .content-right {
       -webkit-box-flex: 0;
-      -ms-flex: 0 0 50px;
-      flex: 0 0 50px;
+      -ms-flex: 0 0 125px;
+      flex: 0 0 125px;
       text-align: right; }
       .product-item .product-inner .content .content-right .price {
         display: block;
@@ -3274,7 +3272,6 @@ img.mfp-img {
     .single-product-content .quantity-colors .quantity {
       overflow: hidden;
       float: left;
-      width: 50%;
       margin-bottom: 15px; }
       .single-product-content .quantity-colors .quantity h5 {
         font-family: "Poppins", sans-serif;
@@ -3288,7 +3285,7 @@ img.mfp-img {
         line-height: 24px;
         padding: 5px 0; }
       .single-product-content .quantity-colors .quantity .pro-qty {
-        width: 100px;
+        width: 70%;
         padding: 0 30px;
         float: left;
         border: 1px solid #cccccc;
@@ -3312,8 +3309,7 @@ img.mfp-img {
           width: 100%;
           border: none;
           border-width: 0 1px;
-          height: 34px;
-          text-align: center; }
+          height: 34px; }
       @media only screen and (min-width: 992px) and (max-width: 1199px) {
         .single-product-content .quantity-colors .quantity h5 {
           width: 100%;

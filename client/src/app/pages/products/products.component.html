@@ -1,0 +1,131 @@
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section" style="background-image: url(assets/images/hero/hero-1.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="page-banner-content col">
+
+        <h1>Products</h1>
+        <ul class="page-breadcrumb">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop-left-sidebar.html">Products</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div><!-- Page Banner Section End -->
+
+<!-- Page Section Start -->
+<div class="page-section section section-padding">
+  <div class="container">
+    <div class="row row-30 mbn-40">
+
+      <div class="col-xl-12 col-lg-12 col-12 order-1 order-lg-2 mb-40">
+        <div class="row single-product-content">
+          <div class="quantity-colors col-4">
+
+            <div class="quantity">
+              <h5>Name:</h5>
+              <div class="pro-qty"><input [(ngModel)]="keyText" type="text"></div>
+            </div>
+
+          </div>
+          <div class="quantity-colors col-4">
+
+            <div class="quantity">
+              <h5>Price from:</h5>
+              <div class="pro-qty"><input [(ngModel)]="priceFrom" type="text"></div>
+            </div>
+
+          </div>
+          <div class="quantity-colors col-4">
+
+            <div class="quantity">
+              <h5>Price To:</h5>
+              <div class="pro-qty"><input [(ngModel)]="priceTo" type="text"></div>
+            </div>
+
+          </div>
+
+          <div class="product-show col-4 ">
+            <h4>Show:</h4>
+            <select class="nice-select page-size">
+              <option>8</option>
+              <option>12</option>
+              <option>16</option>
+              <option>20</option>
+            </select>
+          </div>
+          <div class="product-short col-4 ">
+            <h4>Sort by:</h4>
+            <select class="nice-select sort-by">
+              <option value="name asc">Name Ascending</option>
+              <option value="name desc">Name Descending</option>
+              <option>Date Ascending</option>
+              <option>Date Descending</option>
+              <option>Price Ascending</option>
+              <option>Price Descending</option>
+            </select>
+          </div>
+          <div class="product-show col-4 ">
+            <h4>Category:</h4>
+            <select class="nice-select page_size category-id">
+              <option value="">Please select</option>
+              <option *ngFor="let category of categories" [value]="category.id" >{{category.name}}</option>
+            </select>
+          </div>
+
+          <div class="actions d-flex justify-content-center">
+
+            <button (click)="fetchProducts(1)"><i class="ti-search"></i><span>Search</span></button>
+
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-40" *ngFor="let product of products">
+
+            <div class="product-item" [routerLink]="['/pages/products',product.id]">
+              <div class="product-inner">
+
+                <div class="image">
+                  <img :src="http://localhost:3000/api/files/get/{{product.path}}" alt="">
+
+                </div>
+
+                <div class="content">
+
+                  <div class="content-left">
+
+                    <h4 class="title"><a href="single-product.html">{{product.name}}</a></h4>
+
+                    <div class="ratting">
+
+                    </div>
+                    <ng-container *ngFor="let key of keys(product.attributes)">
+                      <h5 class="size" *ngIf="key != 'null'">{{key}}:
+                        <span *ngFor="let attr of product.attributes[key]">{{attr}}</span>
+                      </h5>
+                    </ng-container>
+
+                  </div>
+
+                  <div class="content-right">
+                    <span class="price">$ {{product.price_from}} - $ {{product.price_to}}</span>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-12">
+            <app-pagination [totalPages]="total" (selectPage)="fetchProducts($event)"></app-pagination>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- Page Section End -->

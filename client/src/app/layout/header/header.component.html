@@ -37,7 +37,7 @@
         <div class="col mt-15 mb-15">
           <!-- Logo Start -->
           <div class="header-logo">
-            <a href="index.html">
+            <a [routerLink]="['/pages','home']">
               <img src="assets/images/logo.png" alt="Jadusona">
             </a>
           </div><!-- Logo End -->
@@ -53,6 +53,18 @@
 
           </div><!-- Header Advance Search End -->
         </div>
+
+        <div class="col order-3 order-lg-2">
+          <div class="main-menu">
+              <nav>
+                  <ul>
+                      <li><a [routerLink]="['/pages','home']">HOME</a></li>
+                      <li><a [routerLink]="['/pages','products']">PRODUCTS</a></li>
+
+                  </ul>
+              </nav>
+          </div>
+      </div>
 
         <div class="col order-3 order-lg-2">
 
