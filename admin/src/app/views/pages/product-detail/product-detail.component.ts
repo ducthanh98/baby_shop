@@ -123,8 +123,6 @@ export class ProductDetailComponent implements OnInit {
         (res: IResponse<any>) => {
           if (res.statusCode === 0) {
             this.categories = res.data;
-            this.getProduct();
-
           } else {
             this.categories = [];
             this.toastrService.error(res.message);

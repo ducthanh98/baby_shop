@@ -1,8 +1,8 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {CommonService} from '../../shared/services/common.service';
-import {AuthService} from '../../auth/auth.service';
-import {ToastrService} from 'ngx-toastr';
-import {IResponse} from '../../shared/interfaces/Iresponse.interface';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { CommonService } from '../../shared/services/common.service';
+import { AuthService } from '../../auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { IResponse } from '../../shared/interfaces/Iresponse.interface';
 
 declare var $: any;
 
@@ -41,10 +41,11 @@ export class ProductsComponent implements OnInit {
       pageSize: $('.page-size') ? $('.page-size').val() : 8,
       pageNumber,
       keyText: this.keyText,
-      price_from: this.priceFrom,
-      price_to: this.priceTo,
+      price_from: this.priceFrom ? this.priceFrom : 0,
+      price_to: this.priceTo ? this.priceTo : 0,
       category_id: +$('.category-id').val(),
-      sort_by: $('.sort-by').val()
+      sort_by: $('.sort-by').val(),
+      status: true,
     };
 
     this.commonService.doGet('product', null, params)

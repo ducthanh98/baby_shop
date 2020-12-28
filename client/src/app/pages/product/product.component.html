@@ -51,8 +51,12 @@
 
                     <div class="colors">
                       <h5>{{key}}:</h5>
-                        <span *ngFor="let attr of attributes[key]" [style.marginRight]="'10px'" [style.display]="'inline-block'" [style.cursor]="'pointer'" [style.border]="'1px solid #94c7eb'" [style.padding]="'5px'"
-                              (click)="setAttributeVariant(key,attr)">{{attr}}</span>
+                        <span  *ngFor="let attr of attributes[key]" [style.marginRight]="'10px'" [style.display]="'inline-block'" [style.cursor]="'pointer'" [style.border]="'1px solid #94c7eb'" [style.padding]="'5px'"
+                              (click)="setAttributeVariant(key,attr)">
+                              <span *ngIf="attribute[key] == attr" class="text-danger">{{attr}}</span>
+                              <span *ngIf="attribute[key] != attr" >{{attr}}</span>
+
+                            </span>
                     </div>
 
                   </div>

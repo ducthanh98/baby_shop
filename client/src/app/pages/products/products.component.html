@@ -34,7 +34,7 @@
 
             <div class="quantity">
               <h5>Price from:</h5>
-              <div class="pro-qty"><input [(ngModel)]="priceFrom" type="text"></div>
+              <div class="pro-qty"><input [(ngModel)]="priceFrom" type="number"></div>
             </div>
 
           </div>
@@ -42,7 +42,7 @@
 
             <div class="quantity">
               <h5>Price To:</h5>
-              <div class="pro-qty"><input [(ngModel)]="priceTo" type="text"></div>
+              <div class="pro-qty"><input [(ngModel)]="priceTo" type="number"></div>
             </div>
 
           </div>
@@ -61,10 +61,10 @@
             <select class="nice-select sort-by">
               <option value="name asc">Name Ascending</option>
               <option value="name desc">Name Descending</option>
-              <option>Date Ascending</option>
-              <option>Date Descending</option>
-              <option>Price Ascending</option>
-              <option>Price Descending</option>
+              <!-- <option>Date Ascending</option> -->
+              <!-- <option>Date Descending</option> -->
+              <option value="price_from asc">Price Ascending</option>
+              <option value="price_from desc">Price Descending</option>
             </select>
           </div>
           <div class="product-show col-4 ">

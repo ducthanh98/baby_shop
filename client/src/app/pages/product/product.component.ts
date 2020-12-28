@@ -98,18 +98,19 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   checkVariant(product) {
-    if (this.products[0].attribute3_name != null) {
+    console.log(this.attribute,product)
+    if (product.attribute3_name != null) {
       return this.attribute[product.attribute1_name] == product.attribute1_value &&
         this.attribute[product.attribute2_name] == product.attribute2_value &&
         this.attribute[product.attribute3_name] == product.attribute3_value;
     }
 
-    if (this.products[0].attribute2_name != null) {
+    if (product.attribute2_name != null) {
       return this.attribute[product.attribute1_name] == product.attribute1_value &&
         this.attribute[product.attribute2_name] == product.attribute2_value;
     }
 
-    if (this.products[0].attribute1_name != null) {
+    if (product.attribute1_name != null) {
       return this.attribute[product.attribute1_name] == product.attribute1_value;
     }
   }
